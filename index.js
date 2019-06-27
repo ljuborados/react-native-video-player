@@ -219,10 +219,13 @@ export default class VideoPlayer extends Component {
       isMuted,
     });
     this.showControls();
-    
+
   }
 
   onToggleFullScreen() {
+    if (this.props.onFullscreenPresenting) {
+      this.props.onFullscreenPresenting();
+    }
     this.player.presentFullscreenPlayer();
   }
 
@@ -444,7 +447,7 @@ export default class VideoPlayer extends Component {
             />
           </TouchableOpacity>
         )}
-        {(Platform.OS === 'android' || this.props.disableFullscreen) ? null : (
+        {this.props.disableFullscreen ? null : (
           <TouchableOpacity onPress={this.onToggleFullScreen} style={customStyles.controlButton}>
             <Icon
               style={[styles.extraControl, customStyles.controlIcon]}
@@ -590,6 +593,7 @@ VideoPlayer.propTypes = {
   onHideControls: PropTypes.func,
   onShowControls: PropTypes.func,
   onMutePress: PropTypes.func,
+  onFullscreenPresenting: PropTypes.func
 };
 
 VideoPlayer.defaultProps = {
