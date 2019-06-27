@@ -223,8 +223,8 @@ export default class VideoPlayer extends Component {
   }
 
   onToggleFullScreen() {
-    if (this.props.onFullscreenPresenting) {
-      this.props.onFullscreenPresenting();
+    if (this.props.onFullscreenToggled) {
+      this.props.onFullscreenToggled();
     }
     this.player.presentFullscreenPlayer();
   }
@@ -593,7 +593,7 @@ VideoPlayer.propTypes = {
   onHideControls: PropTypes.func,
   onShowControls: PropTypes.func,
   onMutePress: PropTypes.func,
-  onFullscreenPresenting: PropTypes.func
+  onFullscreenToggled: PropTypes.func
 };
 
 VideoPlayer.defaultProps = {
