@@ -271,15 +271,17 @@ export default class VideoPlayer extends Component {
   }
 
   onSeek(e) {
-    const diff = e.nativeEvent.pageX - this.seekTouchStart;
-    const ratio = 100 / this.seekBarWidth;
-    const progress = this.seekProgressStart + ((ratio * diff) / 100);
+    if (this.player) {
+      const diff = e.nativeEvent.pageX - this.seekTouchStart;
+      const ratio = 100 / this.seekBarWidth;
+      const progress = this.seekProgressStart + ((ratio * diff) / 100);
 
-    this.setState({
-      progress,
-    });
+      this.setState({
+        progress,
+      });
 
-    this.player.seek(progress * this.state.duration);
+      this.player.seek(progress * this.state.duration);
+    }
   }
 
   getSizeStyles() {
